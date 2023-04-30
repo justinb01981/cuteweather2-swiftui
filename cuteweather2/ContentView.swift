@@ -8,14 +8,40 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var enteredText: String = ""
+    @State var alertVisible = true
+    
+    @State var session = WeatherSession.shared
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack(alignment: .topLeading) {
+            
+
+            
+            CuteMapViewRepresentable().fullScreenCover(isPresented: $alertVisible) {
+                PermissionView {
+                    // permissions granted
+                    $alertVisible.wrappedValue = false
+                    
+                    WeatherSession.shared.viewModel.goToUser {
+                        print("\(self) goToUser done")
+                    }
+                }
+            }
+//            .dynamicTypeSize(.large)/
+            
+            TextField("City", text: $enteredText ) {
+                // user taps enter
+                print("\($session.wrappedValue.viewModel.locationMgr.delegate.debugDescription)")
+                
+                $session.wrappedValue.lastQuery = enteredText
+                
+                $session.wrappedValue.viewModel.navigate(to: enteredText)
+            }
+//            .dynamicTypeSize(.small)
+            
         }
-        .padding()
     }
 }
 

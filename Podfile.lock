@@ -1,0 +1,16 @@
+PODS:
+  - OpenWeatherMapAPIConsumer (0.0.2)
+
+DEPENDENCIES:
+  - OpenWeatherMapAPIConsumer
+
+SPEC REPOS:
+  trunk:
+    - OpenWeatherMapAPIConsumer
+
+SPEC CHECKSUMS:
+  OpenWeatherMapAPIConsumer: eb8d4ff8612d11fad91abfb178d1f2f18559b7b8
+
+PODFILE CHECKSUM: 65cc81c1966c4c1241bc9b529acf1cbe27d1ed25
+
+COCOAPODS: 1.11.3

@@ -1,0 +1,6 @@
+framework module Pods_cuteweather2 {
+  umbrella header "Pods-cuteweather2-umbrella.h"
+
+  export *
+  module * { export * }
+}
