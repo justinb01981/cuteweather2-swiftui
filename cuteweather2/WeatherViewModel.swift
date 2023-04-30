@@ -57,10 +57,10 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
             }
             
             // TODO: add annotations around origin to indicate weather
-            print("\(self) \(q.results)")
+            print("\(strong) \(q.results)")
             
             guard let firstTemp = q.results.first?.owResp else {
-                print("\(self) failed reading result")
+                print("\(strong) failed reading result")
                 return
             }
             
@@ -69,10 +69,21 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
             an.temp = Double(firstTemp.main.temp)
             an.coord = CLLocationCoordinate2D(latitude: firstTemp.coord.lat, longitude: firstTemp.coord.lon)
             
+            // bounce back to main queue before calling handlers (rather than expect them to) - remember to do this everywhe
+            
+            strong.publishLocationHandle(an)
+        }
+    }
+    
+    private func publishLocationHandle(_ an: WeatherAnnotation) {
+        DispatchQueue.main.async {
+            [weak self] in
+            
+            guard let strong = self else {
+                return
+            }
             strong.annotateHandler(an)
-            
             strong.navigateHandler(an.coord)
-            
         }
     }
     
@@ -96,7 +107,13 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
             
             // only first time -- todo: add a "home" button
             startAboveUser = false
-            navigateHandler(co)
+            
+            var w = WeatherAnnotation()
+            w.coord = co
+            w.main = "me"
+            w.temp = 90001.0
+            
+            self.publishLocationHandle(w)
         }
     }
     
