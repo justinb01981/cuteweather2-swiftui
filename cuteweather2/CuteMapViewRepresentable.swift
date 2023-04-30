@@ -30,14 +30,17 @@ struct CuteMapViewRepresentable: UIViewRepresentable {
             addSubview(mapView)
             
             session.viewModel.onNavigate {
+                let co = $0
                 
-                self.mapView.camera.centerCoordinate = $0
-                
-                // TODO: preserve user selected zoom level instead 
-                self.mapView.camera.centerCoordinateDistance = WeatherConstAltitudeInitial
+                DispatchQueue.main.async {  // don't crash - this is on another queue, bounce to main
+                    
+                    self.mapView.camera.centerCoordinate = co
+                    
+                    // TODO: preserve user selected zoom level instead
+                    self.mapView.camera.centerCoordinateDistance = WeatherConstAltitudeInitial
+                }
             }
-            
-            
+    
             session.viewModel.onAnnotate(do: { an in
                 
                 let mka = MKPointAnnotation()
@@ -53,6 +56,8 @@ struct CuteMapViewRepresentable: UIViewRepresentable {
                 // TODO: -- when to remove still unhandled
                 
                 self.mapView.addAnnotation(mka)
+                
+                // TODO: fetch icon from https://openweathermap.org/img/wn/10d@2x.png + $response.main.icon @2x.png
                 
                 print("\(self) adding annotation @ \(mka.coordinate)")
             })

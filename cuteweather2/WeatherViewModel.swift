@@ -23,6 +23,8 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
     var annotateHandler: (WeatherAnnotation) -> () = { _ in }
     var locationPHandler: () -> () = {}
     
+    private var startAboveUser = true
+    
     func navigate(to city: String) {
         locationMgr.delegate = self
         
@@ -90,7 +92,10 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
         // this was set by permissionview to dismiss
         locationPHandler()
         
-        if let co = locations.last?.coordinate {
+        if startAboveUser, let co = locations.last?.coordinate {
+            
+            // only first time -- todo: add a "home" button
+            startAboveUser = false
             navigateHandler(co)
         }
     }
