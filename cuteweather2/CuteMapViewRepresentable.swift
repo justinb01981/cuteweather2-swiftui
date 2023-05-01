@@ -10,6 +10,8 @@ import UIKit
 import MapKit
 import SwiftUI
 
+
+
 struct CuteMapViewRepresentable: UIViewRepresentable {
     
     typealias View = CuteMapView
@@ -70,10 +72,10 @@ class CuteMapView: UIView
 
             let title = "\(an.main)\n\(convertK(an.temp))C"
 
-            var mkptannt = MKPointAnnotation()
+            var mkptannt = MKAnnotationPlus()
             mkptannt.title = title
             mkptannt.coordinate = an.coord
-            mkptannt.subtitle = an.icon // HACK: -- tag annotation with its ID in subtitle
+            mkptannt.icon = an.icon
 
             // TODO: -- when to remove still unhandled
             strong.mapView.addAnnotation(mkptannt)
@@ -91,7 +93,6 @@ class CuteMapView: UIView
 
                     if let view = strong.mapView.dequeueReusableAnnotationView(withIdentifier: an.icon) as? CuteMapViewAnnotationView
                     {
-
                         let img: UIImage
 
                         if let cachedImg = strong.Timages[an.icon] {
@@ -106,10 +107,11 @@ class CuteMapView: UIView
                             }
                             else {
                                 img = UIImage() // placeholder so img cannot be nil
+                                print("\(self) failed parsing image data")
                             }
 
                             // annot has not been added yet
-                            print("\(strong) adding annotation image to table")
+                            print("\(strong) adding annotation image \(an.icon) to table")
                         }
 
                         view.cuteImage = img // glyphImage
@@ -141,26 +143,28 @@ class CuteMapView: UIView
     }
 }
 
-
-
 extension CuteMapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let key = annotation.subtitle ?? "shit" else {
-            fatalError("annotation reuseID hack broken?")
+        var key: String
+
+        guard let wAnnotation = annotation as? MKAnnotationPlus else {
+            fatalError("\(self) cast failed")
         }
 
-        if let found = Timages[key] {
+        if let found = Timages[wAnnotation.icon] {
 
-            if let hackTitleId = annotation.subtitle ?? nil {
-                guard let v = mapView.dequeueReusableAnnotationView(withIdentifier: hackTitleId) as? CuteMapViewAnnotationView
-                else {
-                    return nil
-                }
-
-                v.cuteImage = found
-                return v
+            guard let v = mapView.dequeueReusableAnnotationView(withIdentifier: wAnnotation.icon) as? CuteMapViewAnnotationView
+            else {
+                return nil
             }
+
+            v.cuteImage = found
+            return v
         }
         return nil
     }
+}
+
+class MKAnnotationPlus: MKPointAnnotation {
+    var icon: String!
 }

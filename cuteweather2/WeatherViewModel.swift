@@ -59,7 +59,7 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
             // TODO: add annotations around origin to indicate weather
             print("\(strong) \(q.results)")
             
-            guard let firstTemp = q.results.first?.owResp else {
+            guard let firstTemp = q.results.last?.owResp else {
                 print("\(strong) failed reading result")
                 return
             }
@@ -68,6 +68,7 @@ class WeatherViewModel: NSObject, ViewModelBase, CLLocationManagerDelegate {
             
             an.temp = Double(firstTemp.main.temp)
             an.coord = CLLocationCoordinate2D(latitude: firstTemp.coord.lat, longitude: firstTemp.coord.lon)
+            an.icon = firstTemp.weather.last?.icon ?? "0"
             
             // bounce back to main queue before calling handlers (rather than expect them to) - remember to do this everywhe
             

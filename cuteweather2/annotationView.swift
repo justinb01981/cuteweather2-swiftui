@@ -25,6 +25,6 @@ class CuteMapViewAnnotationView: MKMarkerAnnotationView {
     override func prepareForReuse() {
         super.prepareForDisplay()
 
-        glyphImage = nil
+//        glyphImage = nil
     }
 }
