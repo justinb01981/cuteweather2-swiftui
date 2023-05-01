@@ -26,6 +26,7 @@
 		D088A5F129FD7EA000D3F6D0 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088A5F029FD7EA000D3F6D0 /* WeatherAPI.swift */; };
 		D088A5F429FDF9C300D3F6D0 /* WeatherAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088A5F329FDF9C300D3F6D0 /* WeatherAnnotation.swift */; };
 		D088A5F629FE112C00D3F6D0 /* CurWeatherCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088A5F529FE112C00D3F6D0 /* CurWeatherCodable.swift */; };
+		D088A5F929FF354C00D3F6D0 /* annotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D088A5F829FF354C00D3F6D0 /* annotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D088A5F029FD7EA000D3F6D0 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		D088A5F329FDF9C300D3F6D0 /* WeatherAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAnnotation.swift; sourceTree = "<group>"; };
 		D088A5F529FE112C00D3F6D0 /* CurWeatherCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurWeatherCodable.swift; sourceTree = "<group>"; };
+		D088A5F829FF354C00D3F6D0 /* annotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = annotationView.swift; sourceTree = "<group>"; };
 		E572B03AEB1D2A113E268EE4 /* Pods-cuteweather2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cuteweather2.debug.xcconfig"; path = "Target Support Files/Pods-cuteweather2/Pods-cuteweather2.debug.xcconfig"; sourceTree = "<group>"; };
 		F0E0C2324C5B2A867AE69511 /* Pods-cuteweather2-cuteweather2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cuteweather2-cuteweather2UITests.debug.xcconfig"; path = "Target Support Files/Pods-cuteweather2-cuteweather2UITests/Pods-cuteweather2-cuteweather2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +166,7 @@
 				D088A5F029FD7EA000D3F6D0 /* WeatherAPI.swift */,
 				D088A5F529FE112C00D3F6D0 /* CurWeatherCodable.swift */,
 				D088A5F329FDF9C300D3F6D0 /* WeatherAnnotation.swift */,
+				D088A5F829FF354C00D3F6D0 /* annotationView.swift */,
 				D054E06029FB2E7700FA5D08 /* Assets.xcassets */,
 				D088A5EE29FC3CE800D3F6D0 /* Info.plist */,
 				D054E06229FB2E7700FA5D08 /* Preview Content */,
@@ -443,6 +446,7 @@
 				D088A5F629FE112C00D3F6D0 /* CurWeatherCodable.swift in Sources */,
 				D054E05D29FB2E7500FA5D08 /* cuteweather2App.swift in Sources */,
 				D054E08729FB2EE800FA5D08 /* WeatherSession.swift in Sources */,
+				D088A5F929FF354C00D3F6D0 /* annotationView.swift in Sources */,
 				D054E09129FB99F800FA5D08 /* Constants.swift in Sources */,
 				D088A5F429FDF9C300D3F6D0 /* WeatherAnnotation.swift in Sources */,
 			);

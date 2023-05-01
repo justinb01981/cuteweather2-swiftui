@@ -13,4 +13,5 @@ struct WeatherAnnotation {
     var coord = CLLocationCoordinate2D()
     var main = String()
     var temp = 0.0
+    var icon = "10d"
 }
