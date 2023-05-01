@@ -15,16 +15,16 @@ class CuteMapViewAnnotationView: MKMarkerAnnotationView {
 
     var cuteImage: UIImage? {
         get {
-            return glyphImage
+            return image
         }
         set {
-            glyphImage = newValue
+            image = newValue
         }
     }
 
     override func prepareForReuse() {
         super.prepareForDisplay()
 
-//        glyphImage = nil
+//        image = nil
     }
 }

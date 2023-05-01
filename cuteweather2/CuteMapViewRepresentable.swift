@@ -159,6 +159,7 @@ extension CuteMapView: MKMapViewDelegate {
             }
 
             v.cuteImage = found
+            v.calloutOffset = CGPoint(x: -100, y: -100) // TODO: get image center offset working
             return v
         }
         return nil
